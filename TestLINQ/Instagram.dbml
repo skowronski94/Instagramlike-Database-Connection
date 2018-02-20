@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="generailDB" Class="InstagramDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=server-1337.database.windows.net;Initial Catalog=generailDB;Persist Security Info=True;User ID=serverAdmin" SettingsObjectName="TestLINQ.Properties.Settings" SettingsPropertyName="generailDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.users" Member="users">
+    <Type Name="user">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="user_photo" Member="photos" ThisKey="id" OtherKey="user_id" Type="photo" />
+      <Association Name="user_comment" Member="comments" ThisKey="id" OtherKey="user_id" Type="comment" />
+      <Association Name="user_follow" Member="follows" ThisKey="id" OtherKey="follower_id" Type="follow" />
+      <Association Name="user_follow1" Member="follows1" ThisKey="id" OtherKey="followee_id" Type="follow" />
+      <Association Name="user_like" Member="likes" ThisKey="id" OtherKey="user_id" Type="like" />
+    </Type>
+  </Table>
+  <Table Name="dbo.photos" Member="photos">
+    <Type Name="photo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="image_url" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="photo_comment" Member="comments" ThisKey="id" OtherKey="photo_id" Type="comment" />
+      <Association Name="photo_like" Member="likes" ThisKey="id" OtherKey="photo_id" Type="like" />
+      <Association Name="photo_photo_tag" Member="photo_tags" ThisKey="id" OtherKey="photo_id" Type="photo_tag" />
+      <Association Name="user_photo" Member="user" ThisKey="user_id" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.comments" Member="comments">
+    <Type Name="comment">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="comment_text" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="photo_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="photo_comment" Member="photo" ThisKey="photo_id" OtherKey="id" Type="photo" IsForeignKey="true" />
+      <Association Name="user_comment" Member="user" ThisKey="user_id" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.follows" Member="follows">
+    <Type Name="follow">
+      <Column Name="follower_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="followee_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="user_follow" Member="user" ThisKey="follower_id" OtherKey="id" Type="user" IsForeignKey="true" />
+      <Association Name="user_follow1" Member="user1" ThisKey="followee_id" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.likes" Member="likes">
+    <Type Name="like">
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="photo_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="photo_like" Member="photo" ThisKey="photo_id" OtherKey="id" Type="photo" IsForeignKey="true" />
+      <Association Name="user_like" Member="user" ThisKey="user_id" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.photo_tags" Member="photo_tags">
+    <Type Name="photo_tag">
+      <Column Name="photo_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tag_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="photo_photo_tag" Member="photo" ThisKey="photo_id" OtherKey="id" Type="photo" IsForeignKey="true" />
+      <Association Name="tag_photo_tag" Member="tag" ThisKey="tag_id" OtherKey="id" Type="tag" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tags" Member="tags">
+    <Type Name="tag">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tag_name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tag_photo_tag" Member="photo_tags" ThisKey="id" OtherKey="tag_id" Type="photo_tag" />
+    </Type>
+  </Table>
+</Database>

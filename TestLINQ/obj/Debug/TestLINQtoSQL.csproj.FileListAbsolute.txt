@@ -1,0 +1,7 @@
+C:\Users\Adrian\Documents\Visual Studio 2017\Projects\TestLINQ\TestLINQ\obj\Debug\TestLINQtoSQL.csprojResolveAssemblyReference.cache
+C:\Users\Adrian\Documents\Visual Studio 2017\Projects\TestLINQ\TestLINQ\obj\Debug\TestLINQtoSQL.csproj.CoreCompileInputs.cache
+C:\Users\Adrian\Documents\Visual Studio 2017\Projects\TestLINQ\TestLINQ\bin\Debug\TestLINQ.exe.config
+C:\Users\Adrian\Documents\Visual Studio 2017\Projects\TestLINQ\TestLINQ\bin\Debug\TestLINQ.exe
+C:\Users\Adrian\Documents\Visual Studio 2017\Projects\TestLINQ\TestLINQ\bin\Debug\TestLINQ.pdb
+C:\Users\Adrian\Documents\Visual Studio 2017\Projects\TestLINQ\TestLINQ\obj\Debug\TestLINQ.exe
+C:\Users\Adrian\Documents\Visual Studio 2017\Projects\TestLINQ\TestLINQ\obj\Debug\TestLINQ.pdb
